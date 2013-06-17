@@ -1,4 +1,3 @@
-puppet-gitlab-requirements
-==========================
+# puppet-gitlab-requirements
 
-Gitlab requirements
+GitLab requirements, see [gitlab puppet module](https://github.com/sbadia/puppet-gitlab/).
