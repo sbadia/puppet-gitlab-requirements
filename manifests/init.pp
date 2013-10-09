@@ -9,7 +9,7 @@
 # Class:: gitlab_requirements
 #
 #
-class depends($gitlab_dbname, $gitlab_dbuser, $gitlab_dbpwd) {
+class gitlab_requirements($gitlab_dbname, $gitlab_dbuser, $gitlab_dbpwd) {
   include redis
   include nginx
   include mysql::server
@@ -20,6 +20,8 @@ class depends($gitlab_dbname, $gitlab_dbuser, $gitlab_dbpwd) {
   }
 
   class { 'ruby::dev': }
+
+  class { 'git': }
 
   mysql::db {
     $gitlab_dbname:
@@ -37,6 +39,6 @@ class depends($gitlab_dbname, $gitlab_dbuser, $gitlab_dbpwd) {
 
   Anchor['depends::begin'] ->
   Class['redis'] -> Class['nginx'] -> Class['ruby'] -> Class['ruby::dev'] ->
-  Class['mysql::server'] -> Mysql::Db[$gitlab_dbname] ->
+  Class['git'] -> Class['mysql::server'] -> Mysql::Db[$gitlab_dbname] ->
   Anchor['depends::end']
 }
