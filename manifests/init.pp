@@ -37,6 +37,18 @@ class gitlab_requirements(
         rubygems_package => 'rubygems1.9.1',
         rubygems_update  => false,
       }
+      exec { 'ruby-version':
+        command => '/usr/bin/update-alternatives --set ruby /usr/bin/ruby1.9.1',
+        user => root,
+        require => Package['ruby1.9.3'],
+        before => Class['Ruby::Dev'],
+      }
+      exec { 'gem-version':
+        command => '/usr/bin/update-alternatives --set gem /usr/bin/gem1.9.1',
+        user => root,
+        require => Package['ruby1.9.3'],
+        before => Class['Ruby::Dev'],
+      }
     }
     default: {
       class { 'ruby':
