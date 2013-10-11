@@ -1,15 +1,31 @@
-# Module:: gitlab-requirements
-# Manifest:: init.pp
+# == Class: gitlab_requirements
 #
-# Author:: Sebastien Badia (<seb@sebian.fr>)
-# Date:: 2013-06-18 01:48:08 +0200
-# Maintainer:: Sebastien Badia (<seb@sebian.fr>)
+# Install all reguirements needed by gitlab
+# See puppet-gitlab module.
 #
-
-# Class:: gitlab_requirements
+# === Parameters:
 #
+# [*gitlab_dbname*]
+#  (optional) Gitlab database name
+#   Defaults to 'gitlab'
 #
-class gitlab_requirements($gitlab_dbname, $gitlab_dbuser, $gitlab_dbpwd) {
+# [*gitlab_dbuser*]
+#  (optional) Gitlab database user
+#   Defaults to 'gitlab'
+#
+# [*gitlab_dbpwd*]
+#  (optional) Gitlab database password
+#   Defaults to 'changeme'
+#
+# === Authors:
+#
+# Andrew Tomaka <atomaka@gmail.com>
+# Sebastien Badia <seb@sebian.fr>
+#
+class gitlab_requirements(
+  $gitlab_dbname = 'gitlab',
+  $gitlab_dbuser = 'gitlab',
+  $gitlab_dbpwd  = 'changeme') {
   include redis
   include nginx
   include mysql::server

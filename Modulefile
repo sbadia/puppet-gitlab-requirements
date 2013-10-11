@@ -1,7 +1,7 @@
 name    'puppet-gitlab-requirements'
 version '0.0.2'
 source  'https://github.com/sbadia/puppet-gitlab-requirements'
-author  'Sebastien Badia'
+author  'Andrew Tomaka, Sebastien Badia'
 license 'GPLv3'
 summary 'Puppet GitLab Requirments Module'
 description 'Module to install requirements for GitLab using puppet'
