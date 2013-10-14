@@ -29,6 +29,8 @@ class gitlab_requirements(
   include redis
   include nginx
   include mysql::server
+  include ruby::dev
+  include git
 
   case $operatingsystem {
     ubuntu: {
@@ -57,10 +59,6 @@ class gitlab_requirements(
       }
     }
   }
-
-  class { 'ruby::dev': }
-
-  class { 'git': }
 
   mysql::db {
     $gitlab_dbname:
