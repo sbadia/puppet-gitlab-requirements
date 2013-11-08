@@ -1,10 +1,15 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 #
-NAME = 'puppet-gitlab-requirements'
+NAME = 'sbadia-gitlab_requirements'
 TDIR = File.expand_path(File.dirname(__FILE__))
 
 require 'puppetlabs_spec_helper/rake_tasks'
+require 'puppet-lint/tasks/puppet-lint'
+
+PuppetLint.configuration.send('disable_80chars')
+PuppetLint.configuration.send('disable_variable_scope')
+PuppetLint.configuration.fail_on_warnings = true
 
 def get_version
   if File.read(File.join(TDIR, 'Modulefile')) =~ /(\d+)\.(\d+)\.(\d+)/
@@ -86,10 +91,10 @@ namespace :module do
 
   desc "Build #{NAME} module (in a clean env) Please use this for puppetforge"
   task :build do
-    exec "rsync -rv --exclude-from=#{TDIR}/.forgeignore . /tmp/#{NAME}"
-    exec "cd /tmp/#{NAME};puppet module build"
+    exec "rsync -rv --exclude-from=#{TDIR}/.forgeignore . /tmp/#{NAME};cd /tmp/#{NAME};puppet module build"
   end
 end
 
 task(:default).clear
-task :default => :spec
+task :default => [:spec, :lint]
+
