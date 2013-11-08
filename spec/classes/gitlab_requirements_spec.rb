@@ -34,7 +34,7 @@ describe 'gitlab_requirements' do
     it { should contain_class('git')}
   end
 
-  descrive 'mysql database' do
+  describe 'mysql database' do
     context 'with default params' do
       it { should contain_class('mysql::db').with(
         :name     => 'gitlab_production',
