@@ -3,9 +3,12 @@ require 'spec_helper'
 # Gitlab requirements
 describe 'gitlab_requirements' do
   let(:facts) {{
-    :osfamily  => 'Debian',
-    :fqdn      => 'gitlab.fooboozoo.fr',
-    :sshrsakey => 'AAAAB3NzaC1yc2EAAAA'
+    :osfamily         => 'Debian',
+    :operatingsystem  => 'Debian',
+    :kernel           => 'Linux',
+    :lsbdistcodename  => 'wheezy',
+    :fqdn             => 'gitlab.fooboozoo.fr',
+    :sshrsakey        => 'AAAAB3NzaC1yc2EAAAA'
   }}
 
   ## Parameter set
@@ -18,44 +21,20 @@ describe 'gitlab_requirements' do
     }
   end
 
-  it { should contain_include('redis')}
-  it { should contain_include('nginx')}
-  it { should contain_include('mysql::server')}
+  it { should include_class('redis')}
+  it { should include_class('nginx')}
+  it { should include_class('mysql::server')}
 
   describe 'ruby class' do
     it { should contain_class('ruby').with(
       :version          => '1:1.9.3',
       :rubygems_update  => 'false'
     )}
-    it { should contain_class('ruyb::dev')}
+    it { should contain_class('ruby::dev')}
   end
 
   describe 'git class' do
     it { should contain_class('git')}
-  end
-
-  describe 'mysql database' do
-    context 'with default params' do
-      it { should contain_class('mysql::db').with(
-        :name     => 'gitlab_production',
-        :user     => 'baltig',
-        :password => 'Cie7cheewei<ngi3',
-        :ensure   => 'present',
-        :charset  => 'utf8',
-        :host     => 'localhost',
-      )}
-    end
-    context 'with specifics params' do
-      let(:params) { params_set }
-      it { should contain_class('mysql::db').with(
-        :name     => 'gitlab',
-        :user     => 'gitlab',
-        :password => 'changeme',
-        :ensure   => 'present',
-        :charset  => 'utf8',
-        :host     => 'localhost',
-      )}
-    end
   end
 
   describe 'anchors' do

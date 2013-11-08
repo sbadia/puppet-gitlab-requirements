@@ -9,6 +9,7 @@ require 'puppet-lint/tasks/puppet-lint'
 
 PuppetLint.configuration.send('disable_80chars')
 PuppetLint.configuration.send('disable_variable_scope')
+PuppetLint.configuration.send('disable_autoloader_layout')
 PuppetLint.configuration.fail_on_warnings = true
 
 def get_version
