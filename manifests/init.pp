@@ -29,15 +29,37 @@ class gitlab_requirements(
   include redis
   include nginx
   include mysql::server
+  include git
 
-  class { 'ruby':
-    version         => '1:1.9.3',
-    rubygems_update => false;
+  case $::operatingsystem {
+    ubuntu: {
+      class { 'ruby':
+        ruby_package     => 'ruby1.9.3',
+        rubygems_package => 'rubygems1.9.1',
+        rubygems_update  => false,
+      }
+      exec { 'ruby-version':
+        command => '/usr/bin/update-alternatives --set ruby /usr/bin/ruby1.9.1',
+        user    => root,
+        require => Package['ruby1.9.3'],
+        before  => Class['Ruby::Dev'],
+      }
+      exec { 'gem-version':
+        command => '/usr/bin/update-alternatives --set gem /usr/bin/gem1.9.1',
+        user    => root,
+        require => Package['ruby1.9.3'],
+        before  => Class['Ruby::Dev'],
+      }
+    }
+    default: {
+      class { 'ruby':
+        version         => '1:1.9.3',
+        rubygems_update => false;
+      }
+    }
   }
 
   class { 'ruby::dev': }
-
-  class { 'git': }
 
   mysql::db {
     $gitlab_dbname:
@@ -50,10 +72,10 @@ class gitlab_requirements(
       # See http://projects.puppetlabs.com/issues/17802 (thanks Elliot)
   }
 
-  anchor { 'depends::begin': }
-  anchor { 'depends::end': }
+  anchor { 'gitlab_requirements::begin': }
+  anchor { 'gitlab_requirements::end': }
 
-  Anchor['depends::begin'] ->
+  Anchor['gitlab_requirements::begin'] ->
   Class['redis'] ->
   Class['nginx'] ->
   Class['ruby'] ->
@@ -61,5 +83,6 @@ class gitlab_requirements(
   Class['git'] ->
   Class['mysql::server'] ->
   Mysql::Db[$gitlab_dbname] ->
-  Anchor['depends::end']
+  Anchor['gitlab_requirements::end']
+
 }

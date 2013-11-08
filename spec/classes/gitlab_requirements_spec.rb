@@ -38,8 +38,8 @@ describe 'gitlab_requirements' do
   end
 
   describe 'anchors' do
-    it { should contain_anchor('depends::begin')}
-    it { should contain_anchor('depends::end')}
+    it { should contain_anchor('gitlab_requirements::begin')}
+    it { should contain_anchor('gitlab_requirements::end')}
   end
 
 end # gitlab::requirements
