@@ -1,4 +1,4 @@
-name    'puppet-gitlab-requirements'
+name    'sbadia-gitlab_requirements'
 version '0.0.2'
 source  'https://github.com/sbadia/puppet-gitlab-requirements'
 author  'Andrew Tomaka, Sebastien Badia'
