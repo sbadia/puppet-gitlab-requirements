@@ -54,7 +54,12 @@ class gitlab_requirements(
   anchor { 'depends::end': }
 
   Anchor['depends::begin'] ->
-  Class['redis'] -> Class['nginx'] -> Class['ruby'] -> Class['ruby::dev'] ->
-  Class['git'] -> Class['mysql::server'] -> Mysql::Db[$gitlab_dbname] ->
+  Class['redis'] ->
+  Class['nginx'] ->
+  Class['ruby'] ->
+  Class['ruby::dev'] ->
+  Class['git'] ->
+  Class['mysql::server'] ->
+  Mysql::Db[$gitlab_dbname] ->
   Anchor['depends::end']
 }
