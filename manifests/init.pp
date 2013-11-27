@@ -30,7 +30,7 @@ class gitlab_requirements(
   include nginx
   include mysql::server
   include git
-  include logrotate
+  include logrotate::base
 
   case $::operatingsystem {
     ubuntu: {
@@ -82,7 +82,7 @@ class gitlab_requirements(
   Class['ruby'] ->
   Class['ruby::dev'] ->
   Class['git'] ->
-  Class['logrotate'] ->
+  Class['logrotate::base'] ->
   Class['mysql::server'] ->
   Mysql::Db[$gitlab_dbname] ->
   Anchor['gitlab_requirements::end']
