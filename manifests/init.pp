@@ -77,12 +77,12 @@ class gitlab_requirements(
   anchor { 'gitlab_requirements::end': }
 
   Anchor['gitlab_requirements::begin'] ->
+  Class['logrotate'] ->
   Class['redis'] ->
   Class['nginx'] ->
   Class['ruby'] ->
   Class['ruby::dev'] ->
   Class['git'] ->
-  Class['logrotate'] ->
   Class['mysql::server'] ->
   Mysql::Db[$gitlab_dbname] ->
   Anchor['gitlab_requirements::end']
