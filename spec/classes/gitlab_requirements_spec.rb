@@ -21,9 +21,9 @@ describe 'gitlab_requirements' do
     }
   end
 
-  it { should include_class('redis')}
-  it { should include_class('nginx')}
-  it { should include_class('mysql::server')}
+  it { should contain_class('redis')}
+  it { should contain_class('nginx')}
+  it { should contain_class('mysql::server')}
 
   describe 'ruby class' do
     it { should contain_class('ruby').with(
