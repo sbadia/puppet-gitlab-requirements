@@ -24,6 +24,8 @@ describe 'gitlab_requirements' do
   it { should contain_class('redis')}
   it { should contain_class('nginx')}
   it { should contain_class('mysql::server')}
+  it { should contain_class('git')}
+  it { should contain_class('logrotate')}
 
   describe 'ruby class' do
     it { should contain_class('ruby').with(
@@ -31,10 +33,6 @@ describe 'gitlab_requirements' do
       :rubygems_update  => 'false'
     )}
     it { should contain_class('ruby::dev')}
-  end
-
-  describe 'git class' do
-    it { should contain_class('git')}
   end
 
   describe 'anchors' do

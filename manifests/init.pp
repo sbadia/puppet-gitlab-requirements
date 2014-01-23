@@ -64,13 +64,8 @@ class gitlab_requirements(
 
   mysql::db {
     $gitlab_dbname:
-      ensure   => 'present',
-      charset  => 'utf8',
       user     => $gitlab_dbuser,
       password => $gitlab_dbpwd,
-      host     => 'localhost',
-      grant    => ['all'],
-      # See http://projects.puppetlabs.com/issues/17802 (thanks Elliot)
   }
 
   anchor { 'gitlab_requirements::begin': }
