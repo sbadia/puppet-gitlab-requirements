@@ -1,0 +1,34 @@
+{
+  "name": "sbadia-gitlab_requirements",
+  "version": "0.0.2",
+  "author": "Andrew Tomaka, Sebastien Badia",
+  "summary": "Puppet GitLab Requirments Module",
+  "license": "GPLv3",
+  "source": "https://github.com/sbadia/puppet-gitlab-requirements",
+  "project_page": "https://github.com/sbadia/puppet-gitlab-requirements/",
+  "issues_url": "https://github.com/sbadia/puppet-gitlab-requirements/issues",
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "14.04"
+      ]
+    }
+  ],
+  "description": "Module to install requirements for GitLab using puppet",
+  "dependencies": [
+    {"name": "fsalum/redis", "version_requirement": ">= 0.0.5"},
+    {"name": "jfryman/nginx", "version_requirement": ">= 0.0.2"},
+    {"name": "puppetlabs/git", "version_requirement": ">= 0.0.2"},
+    {"name": "puppetlabs/mysql", "version_requirement": ">= 0.6.1"},
+    {"name": "puppetlabs/ruby", "version_requirement": ">= 0.1.0"},
+    {"name": "puppetlabs/stdlib", "version_requirement": ">= 2.2.1"},
+    {"name": "evenup/logrotate", "version_requirement": ">= 1.0.3"}
+  ]
+}
