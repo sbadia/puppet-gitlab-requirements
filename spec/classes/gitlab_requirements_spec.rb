@@ -7,6 +7,7 @@ describe 'gitlab_requirements' do
     :operatingsystem  => 'Debian',
     :kernel           => 'Linux',
     :lsbdistcodename  => 'wheezy',
+    :lsbdistid        => 'debian',
     :fqdn             => 'gitlab.fooboozoo.fr',
     :sshrsakey        => 'AAAAB3NzaC1yc2EAAAA'
   }}
