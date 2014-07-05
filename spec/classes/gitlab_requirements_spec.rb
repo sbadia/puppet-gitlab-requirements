@@ -28,14 +28,6 @@ describe 'gitlab_requirements' do
   it { should contain_class('git')}
   it { should contain_class('logrotate')}
 
-  describe 'ruby class' do
-    it { should contain_class('ruby').with(
-      :version          => '1:1.9.3',
-      :rubygems_update  => 'false'
-    )}
-    it { should contain_class('ruby::dev')}
-  end
-
   describe 'anchors' do
     it { should contain_anchor('gitlab_requirements::begin')}
     it { should contain_anchor('gitlab_requirements::end')}
