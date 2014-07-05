@@ -27,7 +27,6 @@
     {"name": "jfryman/nginx", "version_requirement": ">= 0.0.2"},
     {"name": "puppetlabs/git", "version_requirement": ">= 0.0.2"},
     {"name": "puppetlabs/mysql", "version_requirement": ">= 0.6.1"},
-    {"name": "puppetlabs/ruby", "version_requirement": ">= 0.1.0"},
     {"name": "puppetlabs/stdlib", "version_requirement": ">= 2.2.1"},
     {"name": "evenup/logrotate", "version_requirement": ">= 1.0.3"}
   ]
